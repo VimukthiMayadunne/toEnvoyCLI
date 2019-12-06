@@ -38,7 +38,10 @@ async function write() {
         '              domains: ["*"]\n' +
         "              routes:\n";
       const dirpath="./envoy-proxy"
-      var prom=await fs.mkdir(dirpath, { recursive: true })
+      var prom=await fs.mkdir(dirpath, { recursive: true }, (err:any) => {
+        if (err) throw err;
+      });
+      //var prom=await fs.mkdir(dirpath, { recursive: true })
       console.info(prom)
       fs.writeFile("./envoy-proxy/envoy.yaml", lyrics, (err: any) => {
         if (err) {

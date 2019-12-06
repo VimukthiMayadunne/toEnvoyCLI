@@ -9,8 +9,8 @@ async function shellScriptFile(){
     'rc=$?\n'+
     'if [ $rc == 0 ]\n'+
     'then\n'+
-	    'sudo docker stop envoy\n'+
-	    'sudo docker rm envoy\n'+
+	    '   sudo docker stop envoy\n'+
+	    '   sudo docker rm envoy\n'+
     'fi\n'+
     'sudo docker build -t envoy:v1 .\n'+
     'sudo docker run -d --name envoy -p 9901:9901 -p 10000:10000 envoy:v1\n';
