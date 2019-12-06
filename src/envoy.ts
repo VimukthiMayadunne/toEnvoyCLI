@@ -41,8 +41,6 @@ async function write() {
       var prom=await fs.mkdir(dirpath, { recursive: true }, (err:any) => {
         if (err) throw err;
       });
-      //var prom=await fs.mkdir(dirpath, { recursive: true })
-      console.info(prom)
       fs.writeFile("./envoy-proxy/envoy.yaml", lyrics, (err: any) => {
         if (err) {
           console.error(err);
@@ -84,7 +82,7 @@ async function readSwaggerAndAddContent() {
             var name = data.info.title;
             name = name.replace(/\W/g, "");
             getpaths(name, swagger.paths, basePath, host, port);
-            resolve(swagger);
+            resolve(0);
           } catch (error) {
             console.log(
               "Please make sure the Swagger filr contains the following fileds"
