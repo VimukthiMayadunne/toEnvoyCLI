@@ -1,6 +1,7 @@
 export {}
 import {Command, flags} from '@oclif/command'
 const envoy = require('./envoy');
+const shell = require('./shell')
 
 class Toenvoy extends Command {
   static description = 'describe the command here'
@@ -28,6 +29,8 @@ class Toenvoy extends Command {
     console.info(swagger)
     var  docker = await envoy.createDockerFile();
     console.info(docker)
+    var sh = await shell.shellScriptFile();
+    console.info(sh)
   }
 }
 
