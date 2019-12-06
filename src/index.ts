@@ -1,3 +1,4 @@
+export {}
 import {Command, flags} from '@oclif/command'
 const envoy = require('./envoy');
 

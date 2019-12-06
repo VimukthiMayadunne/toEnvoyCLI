@@ -1,3 +1,4 @@
+export {}
 const fs = require("fs");
 const readYaml = require("read-yaml");
 
@@ -37,7 +38,7 @@ async function write() {
         '              domains: ["*"]\n' +
         "              routes:\n";
       const dirpath="./envoy-proxy"
-      var prom=await fs.promises.mkdir(dirpath, { recursive: true })
+      var prom=await fs.mkdir(dirpath, { recursive: true })
       console.info(prom)
       fs.writeFile("./envoy-proxy/envoy.yaml", lyrics, (err: any) => {
         if (err) {

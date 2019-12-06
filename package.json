@@ -1,7 +1,7 @@
 {
   "name": "toenvoy",
   "description": "Simple cli tool to convert swagger definition to envoy gateway",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "author": "Vimukthi Mayadunne @VimukthiMayadunne",
   "bin": {
     "toenvoy": "./bin/run"
