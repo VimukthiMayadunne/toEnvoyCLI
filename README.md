@@ -4,8 +4,9 @@ Swagger to Envoy
 Simple cli tool to convert swagger definition to envoy edge proxy using Nodejs and oclif framework
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/toenvoy.svg)](0.0.1)
-[![License](https://img.shields.io/npm/l/toenvoy.svg)](MIT)
+[![Version](https://img.shields.io/npm/v/toenvoy.svg)](https://npmjs.org/package/toenvoy)
+[![Downloads/week](https://img.shields.io/npm/dw/toenvoy.svg)](https://npmjs.org/package/toenvoy)
+[![License](https://img.shields.io/npm/l/toenvoy.svg)](https://github.com/VimukthiMayadunne/toenvoy/blob/master/package.json)
 
 
 
