@@ -1,8 +1,8 @@
 Swagger to Envoy 
 ================
 
-Simple cli tool to convert swagger definition to envoy edge proxy using Nodejs and oclif framework
-A shell script to creat and run a docker continer on localhost port:10000
+Simple cli tool to convert swagger definition to envoy edge proxy using Nodejs and oclif framework and 
+a shell script to creat and run a docker continer 
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/toenvoy.svg)](https://npmjs.org/package/toenvoy)
@@ -41,15 +41,15 @@ credits - oclif framework  https://oclif.io
 2) Make `run.sh` file executable
 3) Run the file `run.sh` 
 
+This will create an Docker container which runs on port :10000
+
 # <a name="reference"></a>Command reference and examples
 
-* [generateApi](#generateapi)
+* [toenvoy](#generateapi)
 
-## <a name="generateapi"></a>generateApi
+## <a name="generateapi"></a>toenvoy
 
 Generates Envoy Proxy bundle in the folder calle envoy-proxy from Swagger specification file named as swagger.yaml.
-
-
 
 
 #### Example
@@ -60,4 +60,5 @@ $ cd envoy-proxy
 $ chmod 777 run.sh
 $ ./run.sh
 ```
+Credits - oclif framework  https://oclif.io
 
