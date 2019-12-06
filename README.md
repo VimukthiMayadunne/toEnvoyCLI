@@ -15,7 +15,7 @@ Simple cli tool to convert swagger definition to envoy edge proxy using Nodejs a
 
 
 # Installation
-You can install `openapi2apigee` either through `npm` or by cloning the code from this GitHub repo.  This README covers the installation steps with `npm`.
+You can install `toenvoy` either through `npm` or by cloning the code from this GitHub repo.  This README covers the installation steps with `npm`.
 
 
 # Setup
