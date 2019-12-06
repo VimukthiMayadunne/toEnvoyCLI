@@ -1,3 +1,5 @@
+import { string } from '@oclif/parser/lib/flags';
+
 export {}
 const fs = require("fs");
 const readYaml = require("read-yaml");
@@ -77,7 +79,7 @@ async function readSwaggerAndAddContent() {
           var swagger = await data;
           try {
             var host = swagger.host;
-            var port = swagger.schemes["0"] == "HTTPS" ? 443 : 80;
+            var port = await findPorts(swagger.schemes);
             var basePath = swagger.basePath;
             var name = data.info.title;
             name = name.replace(/\W/g, "");
@@ -116,12 +118,7 @@ async function createCluster(name: any, host: any, port: number) {
     "            address:\n" +
     "              socket_address:\n" +
     `                address: ${host}\n` +
-    `                port_value: ${port}\n` +
-    "    transport_socket:\n" +
-    "      name: envoy.transport_sockets.tls\n" +
-    "      typed_config:\n" +
-    '        "@type": type.googleapis.com/envoy.api.v2.auth.UpstreamTlsContext\n' +
-    "        sni: www.google.com\n";
+    `                port_value: ${port}\n` ;
   append(data);
 }
 
@@ -182,4 +179,16 @@ async function createDockerFile(){
     }
 });
 }
+
+
+
+async function findPorts(data:any){
+  var string1=data[0]
+  var string2=data[1] || 'HTTP'
+  if( string1.toUpperCase() == "HTTPS" || string2.toUpperCase() =='HTTPS')
+    return 443
+  else
+    return 80
+}
+
 module.exports = { readSwaggerAndAddContent, write ,createDockerFile };

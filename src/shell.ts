@@ -20,7 +20,7 @@ async function shellScriptFile(){
           console.error(err);
           return reject(err);
         }
-        console.log("Docker File File Created!");
+        console.log("Shell Script Created!");
         resolve(0);
       });
     }
