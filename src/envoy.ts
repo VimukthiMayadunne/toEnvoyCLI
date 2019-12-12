@@ -90,10 +90,8 @@ async function readSwaggerAndAddContent(fileName:string) {
 }
 
 async function createCluster(name: any, host: any, port: number) {
-  console.log(name,host,port)
   let data =
     "  clusters:\n" +
-    `   ${host} , ${port}\n`+
     `  - name: ${name}\n` +
     "    connect_timeout: 5.25s\n" +
     "    type: LOGICAL_DNS\n" +
