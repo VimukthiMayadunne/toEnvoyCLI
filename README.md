@@ -8,7 +8,7 @@ a shell script to creat and run a docker continer
 [![Version](https://img.shields.io/npm/v/toenvoy.svg)](https://npmjs.org/package/toenvoy)
 [![License](https://img.shields.io/npm/l/toenvoy.svg)](https://github.com/VimukthiMayadunne/toenvoy/blob/master/package.json)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
-
+[![Downloads/week](https://img.shields.io/npm/dw/toenvoy.svg)](https://npmjs.org/package/toenvoy)
 
 # Pre-requisite 
 - node.js
