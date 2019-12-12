@@ -11,7 +11,7 @@ class Toenvoy extends Command {
     version: flags.version({char: 'v'}),
     help: flags.help({char: 'h'}),
     // flag with a value (-n, --name=VALUE)
-    name: flags.string({char: 'n', description: 'name to of the User'}),
+    name: flags.string({char: 'n', description: 'name of the swagger file'}),
     port: flags.string({char: 'n', description: 'Port number to run the'}),
     // flag with no value (-f, --force)
     force: flags.boolean({char: 'f'}),
@@ -21,11 +21,11 @@ class Toenvoy extends Command {
 
   async run() {
     const {args, flags} = this.parse(Toenvoy)
-    const name = flags.name || 'world'
+    const name = flags.name || 'swagger.yaml'
     this.log(`hello ${name} `)
     var rslts = await envoy.write()
     console.info(rslts)
-    var swagger = await envoy.readSwaggerAndAddContent();
+    var swagger = await envoy.readSwaggerAndAddContent(name);
     console.info(swagger)
     var  docker = await envoy.createDockerFile();
     console.info(docker)
