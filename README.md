@@ -30,13 +30,13 @@ $ npm install -g toenvoy
          
 # Runnig the Cli-Tool
 
-# Metord 1)
+### Metord 1)
 1) Navigate to the location where the swagger file is located 
    Make Sure the swagger file is named as swagger.yaml  
 2) Run the command 'toenvoy'
     This will create a directory called envoy-proxy  in the current directory. 
 
-#  Methord 2)
+###  Methord 2)
 
 1) Navigate to the location where the swagger/OAS definition is located
    
@@ -63,14 +63,14 @@ Generates Envoy Proxy bundle in the folder calle envoy-proxy from Swagger specif
 
 #### Example
 
-Methord 1)
+#### Methord 1)
 ```bash
 $ toenvoy
 $ cd envoy-proxy
 $ chmod 777 run.sh
 $ ./run.sh
 ```
-Methord 2)
+#### Methord 2)
 
 ```bash
 $ toenvoy -n=myfile.yaml
