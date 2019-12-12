@@ -29,11 +29,20 @@ $ npm install -g toenvoy
 
          
 # Runnig the Cli-Tool
+
+# Metord 1)
 1) Navigate to the location where the swagger file is located 
    Make Sure the swagger file is named as swagger.yaml  
 2) Run the command 'toenvoy'
     This will create a directory called envoy-proxy  in the current directory. 
-credits - oclif framework  https://oclif.io
+
+#  Methord 2)
+
+1) Navigate to the location where the swagger/OAS definition is located
+   
+2) Run the command 'toenvoy -n=${filename.yaml}'
+    This will create a directory called envoy-proxy  in the current directory. 
+
 
 # Buiding and Runnig the Docker Container
 
@@ -54,11 +63,24 @@ Generates Envoy Proxy bundle in the folder calle envoy-proxy from Swagger specif
 
 #### Example
 
+Methord 1)
 ```bash
 $ toenvoy
 $ cd envoy-proxy
 $ chmod 777 run.sh
 $ ./run.sh
 ```
+Methord 2)
+
+```bash
+$ toenvoy -n=myfile.yaml
+$ cd envoy-proxy
+$ chmod 777 run.sh
+$ ./run.sh
+```
+
+
+
+
 Credits - oclif framework  https://oclif.io
 
