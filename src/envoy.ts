@@ -10,10 +10,8 @@ async function write() {
   return new Promise(async function(resolve, reject) {
     try {
       let lyrics =
-        '# Testing the new version \n'+
         "# This envoy.yaml file is created by the cli tool \n" +
         "# Change the files according to user requirments\n" +
-        '# Created by - Vimukthi Mayyadunne\n'+
         '# Credits - oclif freamwork \n'+
         "admin:\n" +
         "  access_log_path: /tmp/admin_access.log\n" +
