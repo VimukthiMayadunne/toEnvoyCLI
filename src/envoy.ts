@@ -1,4 +1,6 @@
 import { string } from '@oclif/parser/lib/flags';
+import { resolve } from 'path';
+import { rejects } from 'assert';
 
 export {}
 const fs = require("fs");
@@ -8,6 +10,7 @@ async function write() {
   return new Promise(async function(resolve, reject) {
     try {
       let lyrics =
+        '# Testing the new version \n'+
         "# This envoy.yaml file is created by the cli tool \n" +
         "# Change the files according to user requirments\n" +
         '# Created by - Vimukthi Mayyadunne\n'+
@@ -69,29 +72,16 @@ async function append(data: string) {
   }
 }
 
-async function readSwaggerAndAddContent() {
+async function readSwaggerAndAddContent(fileName:string) {
   return new Promise(async function(resolve, reject) {
     try {
-      readYaml("swagger.yaml", async function(err: any, data: any) {
+      readYaml(fileName, async function(err: any, data: any) {
         if (err) {
           console.log("Unable To Read the Swagger File");
         } else {
-          var swagger = await data;
-          try {
-            var host = swagger.host;
-            var port = await findPorts(swagger.schemes);
-            var basePath = swagger.basePath;
-            var name = data.info.title;
-            name = name.replace(/\W/g, "");
-            getpaths(name, swagger.paths, basePath, host, port);
-            resolve(0);
-          } catch (error) {
-            console.log(
-              "Please make sure the Swagger filr contains the following fileds"
-            );
-            console.log("1.Schemse 2.Host 3.BasePath");
-            return reject(error);
-          }
+          var swagger = await data; 
+          var rslt=(swagger.openapi != null )?oas3(swagger):swagger2(swagger);    
+          resolve(rslt)    
         }
       });
     } catch (Error) {
@@ -102,8 +92,10 @@ async function readSwaggerAndAddContent() {
 }
 
 async function createCluster(name: any, host: any, port: number) {
+  console.log(name,host,port)
   let data =
     "  clusters:\n" +
+    `   ${host} , ${port}\n`+
     `  - name: ${name}\n` +
     "    connect_timeout: 5.25s\n" +
     "    type: LOGICAL_DNS\n" +
@@ -117,9 +109,10 @@ async function createCluster(name: any, host: any, port: number) {
     "        - endpoint:\n" +
     "            address:\n" +
     "              socket_address:\n" +
-    `                address: ${host}\n` +
-    `                port_value: ${port}\n` ;
-  append(data);
+    `                address: ${host}\n ` +
+    `                port_value: ${port}\n `;
+
+ await append(data);
 }
 
 async function getpaths(
@@ -159,6 +152,7 @@ async function httpFilters() {
 }
 
 async function createDockerFile(){
+  console.log("Func called")
     return new Promise(async function(resolve, reject) {
     try{
     let data=
@@ -180,6 +174,49 @@ async function createDockerFile(){
 });
 }
 
+async function swagger2(swagger:any){
+  return new Promise(async function(resolve,reject){
+    try {
+      var host = swagger.host;
+      var port = await findPorts(swagger.schemes);
+      var basePath = swagger.basePath;
+      var name = swagger.info.title;
+      name = name.replace(/\W/g, "");
+      getpaths(name, swagger.paths, basePath, host, port);
+      resolve(0);
+    } catch (error) {
+      console.log(
+        "Please make sure the Swagger filr contains the following fileds"
+      );
+      console.log("1.Schemse 2.Host 3.BasePath");
+      return reject(error);
+    }
+  })
+}
+
+async function oas3(swagger:any){
+  return new Promise(async function(resolve,reject){
+    try{
+      var server= await swagger.servers["0"].url
+      var res   =await server.split("/")
+      var host =await res["2"]
+      var port = (swagger.servers.length == 2 )?443:80;
+      var basePath = await createbasepath(res);
+      var name =await swagger.info.title;
+      name = await name.replace(/\W/g, "");
+      console.log("name : ",name , "  Basepath :",basePath,"port : ",port)
+      await getpaths(name, swagger.paths, basePath, host, port);
+      resolve(0);
+    }
+    catch(err){
+      console.error(err)
+      reject(err)
+    }
+  })
+}
+
+
+
 
 
 async function findPorts(data:any){
@@ -190,5 +227,23 @@ async function findPorts(data:any){
   else
     return 80
 }
+
+async function createbasepath(data:any){
+  return new Promise(async function(resolve,reject){
+    try
+    {
+      var basePath=""; 
+      for(var i= 3; i<data.length ; i++){
+        basePath=basePath+'/'+data[i];  
+}
+    await resolve(basePath)
+}
+    catch(err){
+      reject(err)
+    }
+  }
+ )}
+
+
 
 module.exports = { readSwaggerAndAddContent, write ,createDockerFile };
